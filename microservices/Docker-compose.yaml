@@ -1,0 +1,96 @@
+version: '3.3' # version of compose format
+
+services:
+  landing-service:
+    build: ./landing # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5050:5050 # host:container
+    networks:
+      sample:
+        aliases:
+          - landing-service
+  # Add more services below
+  add-service:
+    build: ./landing/add # path is relative to docker-compose.yml location
+    hostname: add-service
+    ports:
+      - 5051:5051 # host:container
+    networks:
+      sample:
+        aliases:
+          - add-service
+    depends_on:
+      - landing-service
+  sub-service:
+    build: ./landing/sub # path is relative to docker-compose.yml location
+    hostname: sub-service
+    ports:
+      - 5052:5052 # host:container
+    networks:
+      sample:
+        aliases:
+          - sub-service
+    depends_on:
+      - landing-service
+
+  mul-service:
+    build: ./landing/mul # path is relative to docker-compose.yml location
+    hostname: mul-service
+    ports:
+      - 5053:5053 # host:container
+    networks:
+      sample:
+        aliases:
+          - mul-service
+    depends_on:
+      - landing-service
+
+  div-service:
+    build: ./landing/div # path is relative to docker-compose.yml location
+    hostname: div-service
+    ports:
+      - 5054:5054 # host:container
+    networks:
+      sample:
+        aliases:
+          - div-service
+    depends_on:
+      - landing-service
+
+  gcd-service:
+    build: ./landing/gcd # path is relative to docker-compose.yml location
+    hostname: div-service
+    ports:
+      - 5055:5055 # host:container
+    networks:
+      sample:
+        aliases:
+          - gcd-service
+    depends_on:
+      - landing-service
+  mod-service:
+    build: ./landing/modulus # path is relative to docker-compose.yml location
+    hostname: mod-service
+    ports:
+      - 5056:5056 # host:container
+    networks:
+      sample:
+        aliases:
+          - mod-service
+    depends_on:
+      - landing-service
+  exponent-service:
+    build: ./landing/exponent # path is relative to docker-compose.yml location
+    hostname: exponent-service
+    ports:
+      - 5057:5057 # host:container
+    networks:
+      sample:
+        aliases:
+          - exponent-service
+    depends_on:
+      - landing-service
+
+networks:
+  sample:
